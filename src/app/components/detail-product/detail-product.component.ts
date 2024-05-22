@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { CartService } from 'src/app/services/cart.service';
+import { CategoryService } from 'src/app/services/category.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Product } from '../../models/product';
 import { ProductImage } from 'src/app/models/product.image';
 import { environment } from 'src/app/environments/environment';
@@ -21,16 +23,17 @@ export class DetailProductComponent implements OnInit {
     private cartService: CartService,
     // private categoryService: CategoryService,
     // private router: Router,
-    // private activatedRoute: ActivatedRoute,
+      private activatedRoute: ActivatedRoute,
+      private router: Router,
     ) {
       
     }
     ngOnInit() {
       // Lấy productId từ URL      
-      //const idParam = this.activatedRoute.snapshot.paramMap.get('id');
+      const idParam = this.activatedRoute.snapshot.paramMap.get('id');
       debugger
       //this.cartService.clearCart();
-      const idParam = 5 //fake tạm 1 giá trị
+      //const idParam = 9 //fake tạm 1 giá trị
       if (idParam !== null) {
         this.productId = +idParam;
       }
@@ -40,8 +43,8 @@ export class DetailProductComponent implements OnInit {
             // Lấy danh sách ảnh sản phẩm và thay đổi URL
             debugger
             if (response.product_images && response.product_images.length > 0) {
-              response.product_images.forEach((productImage:ProductImage) => {
-                productImage.image_url = `${environment.apiBaseUrl}/products/images/${productImage.image_url}`;
+              response.product_images.forEach((product_image:ProductImage) => {
+                product_image.image_url = `${environment.apiBaseUrl}/products/images/${product_image.image_url}`;
               });
             }            
             debugger
@@ -109,7 +112,7 @@ export class DetailProductComponent implements OnInit {
       }
     }
     
-    buyNow(): void {
-      // Thực hiện xử lý khi người dùng muốn mua ngay
+    buyNow(): void {      
+      this.router.navigate(['/orders']);
     }    
 }
