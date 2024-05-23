@@ -19,6 +19,7 @@ import {
   HttpClientModule, 
   HTTP_INTERCEPTORS 
 } from '@angular/common/http';
+import { UserProfileComponent } from './components/user-profile/user.profile.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {
     OrderDetailComponent, 
     LoginComponent, 
     RegisterComponent, 
-    AppComponent
+    AppComponent, 
+    UserProfileComponent
   ],
   imports: [
     ReactiveFormsModule,
