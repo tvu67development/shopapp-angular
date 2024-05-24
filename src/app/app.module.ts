@@ -20,6 +20,7 @@ import {
   HTTP_INTERCEPTORS 
 } from '@angular/common/http';
 import { UserProfileComponent } from './components/user-profile/user.profile.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { UserProfileComponent } from './components/user-profile/user.profile.com
     LoginComponent, 
     RegisterComponent, 
     AppComponent, 
-    UserProfileComponent
+    UserProfileComponent, AdminComponent
   ],
   imports: [
     ReactiveFormsModule,
