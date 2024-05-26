@@ -1,15 +1,21 @@
 import { ProductService } from './product.service';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { 
+  HttpClient, 
+  HttpParams, 
+  HttpHeaders 
+} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 import { OrderDTO } from '../dtos/order/order.dto';
+import { OrderResponse } from '../responses/order/order.response';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService {
   private apiUrl = `${environment.apiBaseUrl}/orders`;
+  private apiGetAllOrders = `${environment.apiBaseUrl}/orders/admin/get-orders-by-keyword`;
 
   constructor(private http: HttpClient) {}
 
@@ -21,5 +27,13 @@ export class OrderService {
     const url = `${environment.apiBaseUrl}/orders/${orderId}`;
     return this.http.get(url);
   }
-
+  getAllOrders(keyword:string,
+    page: number, limit: number
+  ): Observable<OrderResponse[]> {
+      const params = new HttpParams()
+      .set('keyword', keyword)      
+      .set('page', page.toString())
+      .set('limit', limit.toString());            
+      return this.http.get<any>(this.apiGetAllOrders, { params });
+  }
 }
