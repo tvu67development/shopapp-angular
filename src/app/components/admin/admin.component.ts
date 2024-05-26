@@ -5,14 +5,14 @@ import { TokenService } from 'src/app/services/token.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-order-detail',
+  selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: [
     './admin.component.scss',        
   ]
 })
 export class AdminComponent implements OnInit {
-  adminComponent: string = 'orders';
+  //adminComponent: string = 'orders';
   userResponse?:UserResponse | null;
   constructor(
     private userService: UserService,       
@@ -30,7 +30,15 @@ export class AdminComponent implements OnInit {
     this.userResponse = this.userService.getUserResponseFromLocalStorage();    
   }
   showAdminComponent(componentName: string): void {
-    this.adminComponent = componentName;
+    //this.adminComponent = componentName;orders,categories
+    if(componentName=='orders') {
+      this.router.navigate(['/admin/orders']);
+    } else if(componentName=='categories') {
+      this.router.navigate(['/admin/categories']);
+    }else if(componentName=='products') {
+      this.router.navigate(['/admin/products']);
+    }
+    
   }
 }
 

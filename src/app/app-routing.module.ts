@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'orders', component: OrderComponent,canActivate:[AuthGuardFn] },
   { path: 'user-profile', component: UserProfileComponent, canActivate:[AuthGuardFn] },
   { path: 'orders/:id', component: OrderDetailComponent },
-  //Admin 
+  //Admin   
   { 
     path: 'admin', 
     component: AdminComponent, 
