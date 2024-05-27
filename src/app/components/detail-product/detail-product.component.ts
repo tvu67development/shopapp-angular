@@ -5,7 +5,7 @@ import { CategoryService } from 'src/app/services/category.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Product } from '../../models/product';
 import { ProductImage } from 'src/app/models/product.image';
-import { environment } from 'src/app/environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-detail-product',

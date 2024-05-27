@@ -1,56 +1,49 @@
-import { 
-    IsString, 
-    IsNotEmpty, 
-    IsPhoneNumber, 
-    IsNumber 
+import { IsString, 
+  IsNotEmpty, 
+  IsPhoneNumber, 
+  IsNumber, ArrayMinSize, 
+  ValidateNested, 
+  Length 
 } from 'class-validator';
-import { CartItemDTO } from './cart.item.dto';
 import { Type } from 'class-transformer';
+import { CartItemDTO } from './cart.item.dto';
 
 export class OrderDTO {
-  // @IsNumber()
   user_id: number;
 
-  // @IsString()
-  // @IsNotEmpty()
   fullname: string;
 
-  // @IsString()
-  // @IsNotEmpty()
   email: string;
 
-  // @IsPhoneNumber()
   phone_number: string;
-
-  // @IsString()
-  // @IsNotEmpty()
+  
   address: string;
+  
+  status: string;
 
-  // @IsString()
   note: string;
+  
+  total_money?: number;
 
-  // @IsNumber()
-  total_money: number;
-
-  // @IsString()
   shipping_method: string;
 
-  // @IsString()
+  order_date?: Date;
+
   payment_method: string;
 
-  // @IsString()
   coupon_code: string;
 
   cart_items: { product_id: number, quantity: number }[]; // Thêm cart_items để lưu thông tin giỏ hàng
-
 
   constructor(data: any) {
     this.user_id = data.user_id;
     this.fullname = data.fullname;
     this.email = data.email;
+    this.status = data.status;
     this.phone_number = data.phone_number;
     this.address = data.address;
     this.note = data.note;
+    this.order_date = data.order_date;
     this.total_money = data.total_money;
     this.shipping_method = data.shipping_method;
     this.payment_method = data.payment_method;
@@ -58,3 +51,4 @@ export class OrderDTO {
     this.cart_items = data.cart_items;
   }
 }
+
